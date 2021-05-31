@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View,Image, ToastAndroid } from 'react-native';
+import { StyleSheet, Text, View,Image } from 'react-native';
 import { Button } from 'react-native-elements';
 import firebase from 'firebase';
 import * as Google from 'expo-google-app-auth';
 import Icon from 'react-native-vector-icons/FontAwesome';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-
-
- class LoginScreen extends Component {
+const LoginScreen = ({ navigation }) => {
 
   isUserEqual = (googleUser, firebaseUser) => {
     if (firebaseUser) {
@@ -17,6 +15,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
         if (providerData[i].providerId === firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
             providerData[i].uid === googleUser.getBasicProfile().getId()) {
           // We don't need to reauth the Firebase connection.
+          // getBasicProfile().getId()
           return true;
         }
       }
@@ -43,8 +42,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
         firebase
         .auth()
         .signInWithCredential(credential).then(function(){
-
-          console.log('=======user signed in=======');
+          showToastWithGravity();
+          console.log('======= user signed in successfully =======');
           
 
 
@@ -81,10 +80,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
   
       if (result.type === 'success') {
         this.onSignIn(result);
-        this.props.navigation.navigate('DashboardScreen');
+
+        navigation.navigate('HomeScreen');
         return result.accessToken;
       } else {
-        this.props.navigation.navigate('LoginScreen');
+        navigation.navigate('LoginScreen');
         return { cancelled: true };
       }
     } catch (e) {
@@ -93,15 +93,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
   }
 
 
-    render() {
+
 
         return (
             <View style={styles.container}>
-             <Text style={styles.title}>Welcome to our App</Text>
+             <Text style={styles.title}>Trade Money Faster</Text>
 
                 <Image
                      style={styles.logo}
-                      source={require('../assets/Bitcoin.png')}
+                      source={require('../assets/Bitcoin1.png')}
                 />
 
 
@@ -126,7 +126,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
             </View> 
         )
     }
-}
+
 const styles = StyleSheet.create({
 
     container: {
@@ -152,6 +152,12 @@ title:{
     width: 340,
     height: 340,
     resizeMode: 'stretch',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    borderColor: '#ddd',
+    opacity: 2,
+    shadowRadius: 50
   },
   });
 export default LoginScreen
