@@ -8,8 +8,6 @@ import DashboardScreen from './screens/DashboardScreen';
 
 import * as firebase from 'firebase';
 import { firebaseConfig } from './firebaseConfig';
-
-// Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
 class App extends Component {
