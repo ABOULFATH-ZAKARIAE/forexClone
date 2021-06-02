@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, SafeAreaView, ScrollView, TouchableOpacity } from "react-native";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = ({ route, navigation }) => {
 
 
 
@@ -22,22 +22,26 @@ const HomeScreen = ({ navigation }) => {
     },
     {
       id: 3,
-      symbol: "USDJPY",
+      symbol: "AUDJPY",
       price: 40,
       img: "http://3.bp.blogspot.com/-KJWiQjXg9jA/UIbexMLt4OI/AAAAAAAAAew/26i5lWG6CW8/s1600/dollar_logo_11_s.jpg",
       redirectTo: "https://www.tradingview.com/symbols/USDJPY/"
     }
   ]
 
-
+  const { googleUser } = route.params;
   return (
     <View>
-
-
+      
      <Image
         style={styles.logo}
         source={require('../assets/currency.png')}
       />
+  <View style={styles.userInfo}>
+            <Image source={{uri: `${googleUser.photo_url}`}} style={{width:40, height:40,borderRadius:30}} />
+            <Text style={styles.userInfoTxt}> {googleUser.name} </Text>
+  </View>
+
       <SafeAreaView style={styles.areaView}>
         <ScrollView style={styles.scrollView}>
           <View style={styles.cryptoLists}>
@@ -51,15 +55,15 @@ const HomeScreen = ({ navigation }) => {
               
                         <Text>{data.price} $</Text>
                       <View style={styles.cryptoListsTopData2}>
-                           <TouchableOpacity style={[styles.button, styles.buttonOpen]} onPress={() =>{ navigation.navigate("Chart", { data: data.redirectTo, cryptoPrice: data.price });}}>
+                           <TouchableOpacity style={[styles.button, styles.buttonOpen]} onPress={() =>{ navigation.navigate("Chart", {googleUser, data: data.redirectTo, cryptoPrice: data.price });}}>
                                 <Text>View Chart</Text>
                            </TouchableOpacity>
-                           <TouchableOpacity style={[styles.button, styles.buttonOpen]} onPress={() =>{ navigation.navigate("DetailsCurrencyScreen", { data: data.redirectTo, cryptoPrice: data.price });}}>  
-                                <Text>Buy/Sell</Text>
+                           <TouchableOpacity style={[styles.button, styles.buttonOpen]} onPress={() =>{ navigation.navigate("DetailsCurrencyScreen", {googleUser, data: data.redirectTo, cryptoPrice: data.price });}}>  
+                                <Text>Profile</Text>
                            </TouchableOpacity>
                       </View>
 
-                          <TouchableOpacity style={[styles.button, styles.buttonOpen]} onPress={() =>{ navigation.navigate("DashboardCurrencyScreen");}}>
+                          <TouchableOpacity style={[styles.button, styles.buttonOpen]} onPress={() =>{ navigation.navigate("DashboardScreen",googleUser);}}>
                                 <Text>View Currency</Text> 
                           </TouchableOpacity>
                     </View>
@@ -82,7 +86,7 @@ const styles = StyleSheet.create({
     marginLeft:130,
     width:160,
     height:100,
-    marginTop: 10,
+    marginTop: 5,
   },
 
   cryptoListsData: {
@@ -95,7 +99,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   areaView: {
-    marginTop: 20,
+    marginTop: 10,
     marginBottom: 60
   },
   cryptoListsTxt: {
@@ -105,20 +109,32 @@ const styles = StyleSheet.create({
   cryptoListsTopData: {
     display: "flex",
     // flexDirection: "column",
-    justifyContent: "space-around",
+    // justifyContent: "space-around",
     alignItems: "center"
   },
   cryptoListsTopData2:{
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
 
   },
   button: {
     borderRadius: 20,
     padding: 10,
     elevation: 2,
-    backgroundColor: "#d9d9d9",
+    backgroundColor: "#FFF0EB",
     
-  }
+  },
+  userInfo: {
+    display:'flex',
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "baseline"
+  },
+  userInfoTxt: {
+    fontWeight: "bold",
+    color: '#f4511e',
+    marginTop:5
+
+},
 });

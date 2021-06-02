@@ -11,7 +11,7 @@ import LoginScreen from './screens/LoginScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import HomeScreen from './screens/HomeScreen';
 import Chart from './screens/Chart';
-import WalettScreen from './screens/WalettScreen'
+import Walett from './screens/WalettScreen'
 
 import * as firebase from 'firebase';
 import { firebaseConfig } from './firebaseConfig';
@@ -64,7 +64,7 @@ render(){
       }}/>
 
 
-      <Stack.Screen name="DashboardCurrencyScreen" component={DashboardScreen}
+      <Stack.Screen name="DashboardScreen" component={DashboardScreen}
        options={{
         headerTitleAlign: 'center',
         headerStyle: {
@@ -89,7 +89,7 @@ render(){
         },
       }}/>
       
-      <Stack.Screen name="Wallet" component={WalettScreen} 
+      <Stack.Screen name="Walett" component={Walett} 
        options={{
         headerTitleAlign: 'center',
         headerStyle: {
