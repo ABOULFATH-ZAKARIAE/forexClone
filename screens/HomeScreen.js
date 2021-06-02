@@ -11,21 +11,21 @@ const HomeScreen = ({ navigation }) => {
       symbol: "EURUSD",
       price: 10,
       img: "https://i.pinimg.com/736x/37/e2/a7/37e2a7926b0aa719d9fe6f683869d582.jpg",
-      redirectTo: "https://www.tradingview.com/symbols/SPX/"
+      redirectTo: "https://www.tradingview.com/symbols/EURUSD/"
     },
     {
       id: 2,
       symbol: "GBPUSD",
       price: 30,
       img: "https://img2.freepng.fr/20180308/vyw/kisspng-euro-bank-currency-symbol-logo-finance-3d-metal-currency-symbol-5aa179207ed514.8750548715205317445195.jpg",
-      redirectTo: "https://www.tradingview.com/symbols/TVC-IXIC/"
+      redirectTo: "https://www.tradingview.com/symbols/GBPUSD/"
     },
     {
       id: 3,
-      symbol: "AUDJPY",
+      symbol: "USDJPY",
       price: 40,
       img: "http://3.bp.blogspot.com/-KJWiQjXg9jA/UIbexMLt4OI/AAAAAAAAAew/26i5lWG6CW8/s1600/dollar_logo_11_s.jpg",
-      redirectTo: "https://www.tradingview.com/symbols/DJ-DJI/"
+      redirectTo: "https://www.tradingview.com/symbols/USDJPY/"
     }
   ]
 
